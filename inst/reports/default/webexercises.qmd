@@ -52,13 +52,19 @@ You can use regular expressions to test answers against more complex rules.
 - "Never gonna give you up, never gonna: `r mcq(c("let you go", "turn you down", "run away", answer = "let you down"))`"
 - "I `r mcq(c(answer = "bless the rains", "guess it rains", "sense the rain"))` down in Africa" -Toto
 
+You can also optionally pass a vector of feedback to the multiple choice question. The feedback will appear below the box when an answer is selected.
+If present, the feedback vector must be the same length as the options vector and the order must match up with the order of the options vector. However, you
+can pass an empty string "" if you don't want any feedback to show for certain options.
+
+- What is 20 - 2 x 4? `r mcq(opts=c("72", answer = "12"), feedback=c("Not quite - remember the order of operations. What part of the sum do you need to do first?", "Great job! You followed the operations by doing the multiplication before the subtraction."))`
+
 ### True or False (`torf()`)
 
 - True or False? You can permute values in a vector using `sample()`. `r torf(TRUE)`
 
 ### Longer MCQs (`longmcq()`)
 
-When your answers are very long, sometimes a drop-down select box gets formatted oddly. You can use `longmcq()` to deal with this. Since the answers are long, It's probably best to set up the options inside an R chunk with `echo=FALSE`. 
+When your answers are very long, sometimes a drop-down select box gets formatted oddly. You can use `longmcq()` to deal with this. Since the answers are long, It's probably best to set up the options inside an R chunk with `echo=FALSE`.
 
 **What is a p-value?**
 
