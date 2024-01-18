@@ -53,10 +53,10 @@ You can use regular expressions to test answers against more complex rules.
 - "I `r mcq(c(answer = "bless the rains", "guess it rains", "sense the rain"))` down in Africa" -Toto
 
 You can also optionally pass a vector of feedback to the multiple choice question. The feedback will appear below the box when an answer is selected.
-If present, the feedback vector must be the same length as the options vector and the order must match up with the order of the options vector. However, you
-can pass an empty string "" if you don't want any feedback to show for certain options.
 
-- What is 20 - 2 x 4? `r mcq(opts=c("72", answer = "12"), feedback=c("Not quite - remember the order of operations. What part of the sum do you need to do first?", "Great job! You followed the operations by doing the multiplication before the subtraction."))`
+- What is 20 - 2 x 4? `r mcq(opts=c("72", answer = "12"), feedback=c("Not quite - remember the order of operations. What part of the sum do you need to do first?", "Great job! You followed the order of operations by doing the multiplication before the subtraction."))`
+
+If present, the feedback vector must be the same length as the options vector and the order must match up with the order of the options vector. However, you can pass an empty string "" if you don't want any feedback to show for certain options.
 
 - What has changed in the year 3000? `r mcq(opts=c(answer = "Not much, but they live underwater", "Everything", "Nothing - I can't believe they don't have hoverboards yet"), feedback=c("", "Go and listen to the definitive song on the subject and report back!", "Wait, really? They don't? Well, that's thoroughly disappointing."))`
 
