@@ -100,6 +100,7 @@ select_func = function(e) {
 
     var feedbackDiv = document.createElement("p");
     feedbackDiv.setAttribute("id", "feedbackDiv"+this.id);
+    feedbackDiv.setAttribute("class", "feedback");
 
   } else {
 
