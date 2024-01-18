@@ -95,22 +95,27 @@ select_func = function(e) {
 
   var cl = this.classList
   var feedback = (this[this.selectedIndex].getAttribute("feedback"))
+  console.log(feedback)
 
   if (document.getElementById('feedbackDiv') === null){
 
-    var feedbackDiv = document.createElement("div");
+    var feedbackDiv = document.createElement("p");
     feedbackDiv.setAttribute("id", "feedbackDiv");
+    console.log(feedbackDiv)
 
   } else {
 
     var feedbackDiv = document.getElementById('feedbackDiv')
     feedbackDiv.innerHTML = "";
+    console.log(feedbackDiv)
 
   }
 
-  const currentDiv = document.getElementById(this);
+  console.log(this)
   feedbackDiv.innerHTML = feedback;
-  document.body.insertBefore(feedbackDiv, currentDiv);
+  // document.body.insertBefore(feedbackDiv, this.parentNode);
+  console.log(this.parentNode)
+  this.parentNode.insertAdjacentElement('afterend', feedbackDiv);
 
   /* add style */
   cl.remove("webex-incorrect");
