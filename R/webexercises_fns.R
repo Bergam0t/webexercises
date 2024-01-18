@@ -118,10 +118,13 @@ mcq <- function(opts, feedback=NULL) {
     if (length(opts) != length(feedback)) {
       stop("Different number of feedback options passed to number of question options. Please ensure that you have as many feedback text pieces as questions and they are in the same order as your opts vector.")
     }
+
+    options <- sprintf("<option value='%s' feedback='<b>%s</b>'>%s</option>", names(opts), feedback, opts)
+  } else {
+    options <- sprintf("<option value='%s'>%s</option>", names(opts), opts)
   }
 
   # html format
-  options <- sprintf("<option value='%s' feedback='%s'>%s</option>", names(opts), feedback, opts)
   html <- sprintf("<select class='webex-select'><option value='blank'></option>%s</select>",
           paste(options, collapse = ""))
 
