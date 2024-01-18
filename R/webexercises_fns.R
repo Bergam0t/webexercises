@@ -121,10 +121,9 @@ mcq <- function(opts, feedback=NULL) {
   }
 
   # html format
-  options <- sprintf("<option value='%s'>%s</option>", names(opts), opts)
-  feedback_text <- sprintf("<feedback value='%s'></feedback>", feedback)
-  html <- sprintf("<select class='webex-select'><option value='blank'></option>%s %s</select>",
-          paste(options, collapse = ""), paste(feedback_text, collapse = ""))
+  options <- sprintf("<option value='%s' feedback='%s'>%s</option>", names(opts), feedback, opts)
+  html <- sprintf("<select class='webex-select'><option value='blank'></option>%s</select>",
+          paste(options, collapse = ""))
 
   # pdf / other format
   pdf_opts <- sprintf("* (%s) %s  ", LETTERS[seq_along(opts)], opts)
