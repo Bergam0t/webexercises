@@ -88,6 +88,9 @@ fitb <- function(answer,
 #'
 #' @param opts Vector of alternatives. The correct answer is the
 #'   element(s) of this vector named 'answer'.
+#' @param feedback Optional vector of help or praise.
+#'   element(s) must be in the same order as the vector of options.
+#'   If provided, the additional text will appear when an option is selected.
 #' @details Writes html code that creates an option box widget, with one or
 #'   more correct answers. Call this function inline in an RMarkdown document.
 #'   See the Web Exercises RMarkdown template for further examples.
@@ -101,17 +104,27 @@ fitb <- function(answer,
 #'
 #' # Which actor played Luke Skywalker in the movie Star Wars?
 #' mcq(c("Alec Guinness", answer = "Mark Hamill", "Harrison Ford"))
+#' What is 20 - 2 x 4
+#' mcq(opts=c("72", answer = "12"),
+#'     feedback=c("Not quite - remember the order of operations. What part of the sum do you need to do first?", "Great job!"))
 #' @export
-mcq <- function(opts) {
+mcq <- function(opts, feedback=NULL) {
   ix <- which(names(opts) == "answer")
   if (length(ix) == 0) {
     stop("MCQ has no correct answer")
   }
 
+  if (!is.null(feedback)) {
+    if (length(opts) != length(feedback)) {
+      stop("Different number of feedback options passed to number of question options. Please ensure that you have as many feedback text pieces as questions and they are in the same order as your opts vector.")
+    }
+  }
+
   # html format
   options <- sprintf("<option value='%s'>%s</option>", names(opts), opts)
-  html <- sprintf("<select class='webex-select'><option value='blank'></option>%s</select>",
-          paste(options, collapse = ""))
+  feedback_text <- sprintf("<feedback value='%s'></feedback>", feedback)
+  html <- sprintf("<select class='webex-select'><option value='blank'></option>%s %s</select>",
+          paste(options, collapse = ""), paste(feedback_text, collapse = ""))
 
   # pdf / other format
   pdf_opts <- sprintf("* (%s) %s  ", LETTERS[seq_along(opts)], opts)

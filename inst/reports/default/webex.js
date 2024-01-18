@@ -94,6 +94,23 @@ select_func = function(e) {
   console.log("webex: check select");
 
   var cl = this.classList
+  var feedback = (this[this.selectedIndex].getAttribute("feedback"))
+
+  if (document.getElementById('feedbackDiv') === null){
+
+    var feedbackDiv = document.createElement("div");
+    feedbackDiv.setAttribute("id", "feedbackDiv");
+
+  } else {
+
+    var feedbackDiv = document.getElementById('feedbackDiv')
+    feedbackDiv.innerHTML = "";
+
+  }
+
+  const currentDiv = document.getElementById(this);
+  feedbackDiv.innerHTML = feedback;
+  document.body.insertBefore(feedbackDiv, currentDiv);
 
   /* add style */
   cl.remove("webex-incorrect");
