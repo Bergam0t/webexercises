@@ -53,7 +53,7 @@ You can provide feedback that will appear when an incorrect answer is typed in.
 
 However, where the answer is longer than 1 letter, you may wish to use it in conjunction with the 'checked sections' function (see below) to prevent the feedback from being displayed prematurely.
 
-- Type in the word 'long': `r fitb(long, feedback="See, this doesn't work quite as well.")`
+- Type in the word 'long': `r fitb("long", feedback="See, this does not work quite as well.")`
 
 ### Multiple Choice (`mcq()`)
 
