@@ -95,26 +95,20 @@ select_func = function(e) {
 
   var cl = this.classList
   var feedback = (this[this.selectedIndex].getAttribute("feedback"))
-  console.log(feedback)
 
-  if (document.getElementById('feedbackDiv') === null){
+  if (document.getElementById('feedbackDiv'+this.id) === null){
 
     var feedbackDiv = document.createElement("p");
-    feedbackDiv.setAttribute("id", "feedbackDiv");
-    console.log(feedbackDiv)
+    feedbackDiv.setAttribute("id", "feedbackDiv"+this.id);
 
   } else {
 
-    var feedbackDiv = document.getElementById('feedbackDiv')
+    var feedbackDiv = document.getElementById('feedbackDiv'+this.id)
     feedbackDiv.innerHTML = "";
-    console.log(feedbackDiv)
 
   }
 
-  console.log(this)
   feedbackDiv.innerHTML = feedback;
-  // document.body.insertBefore(feedbackDiv, this.parentNode);
-  console.log(this.parentNode)
   this.parentNode.insertAdjacentElement('afterend', feedbackDiv);
 
   /* add style */
