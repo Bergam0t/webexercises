@@ -47,6 +47,14 @@ You can use regular expressions to test answers against more complex rules.
 
 - Type any 3 letters: `r fitb("^[a-zA-Z]{3}$", width = 3, regex = TRUE)`
 
+You can provide feedback that will appear when an incorrect answer is typed in.
+
+- What is 1 + 3 x 2: `r fitb(7, num = TRUE, feedback="Not quite - think about the order of operations.")`
+
+However, where the answer is longer than 1 letter, you may wish to use it in conjunction with the 'checked sections' function (see below) to prevent the feedback from being displayed prematurely.
+
+- Type in the word 'long': `r fitb(long, feedback="See, this doesn't work quite as well.")`
+
 ### Multiple Choice (`mcq()`)
 
 - "Never gonna give you up, never gonna: `r mcq(c("let you go", "turn you down", "run away", answer = "let you down"))`"
