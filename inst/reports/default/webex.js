@@ -49,6 +49,22 @@ solveme_func = function(e) {
   var real_answers = JSON.parse(this.dataset.answer);
   var my_answer = this.value;
   var cl = this.classList;
+
+  var feedback = (this.getAttribute("feedback"))
+
+  if (document.getElementById('feedbackDiv'+this.id) === null){
+
+    var feedbackDiv = document.createElement("p");
+    feedbackDiv.setAttribute("id", "feedbackDiv"+this.id);
+    feedbackDiv.setAttribute("class", "feedback");
+
+  } else {
+
+    var feedbackDiv = document.getElementById('feedbackDiv'+this.id)
+    feedbackDiv.innerHTML = "";
+
+  }
+
   if (cl.contains("ignorecase")) {
     my_answer = my_answer.toLowerCase();
   }
@@ -65,6 +81,8 @@ solveme_func = function(e) {
   } else {
     cl.add("webex-incorrect");
     cl.remove("webex-correct");
+    feedbackDiv.innerHTML = feedback;
+  	this.parentNode.insertAdjacentElement('afterend', feedbackDiv);
   }
 
   // match numeric answers within a specified tolerance
@@ -75,6 +93,8 @@ solveme_func = function(e) {
       cl.add("webex-correct");
     } else {
       cl.remove("webex-correct");
+      feedbackDiv.innerHTML = feedback;
+  	  this.parentNode.insertAdjacentElement('afterend', feedbackDiv);
     }
   }
 

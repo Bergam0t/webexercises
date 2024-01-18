@@ -14,6 +14,9 @@
 #' @param ignore_ws Whether to ignore whitespace.
 #' @param regex Whether to use regex to match answers (concatenates
 #'   all answers with `|` before matching).
+#' @param feedback Optional hint text that will appear if the wrong answer
+#'   is input. Best used in conjunction with the 'checked sections' feature
+#'   as otherwise feedback will appear while the answer is being input
 #' @details Writes html code that creates an input box widget. Call
 #'   this function inline in an RMarkdown document. See the Web
 #'   Exercises RMarkdown template for examples of its use in
@@ -30,6 +33,9 @@
 #'
 #' # What is pi to three decimal places?
 #' fitb(pi, num = TRUE, tol = .001)
+#'
+#' What is 1 + 3 x 2?
+#' fitb(7, num = TRUE, feedback="Not quite - think about the order of operations")
 #' @export
 fitb <- function(answer,
                  width = calculated_width,
@@ -37,7 +43,8 @@ fitb <- function(answer,
                  ignore_case = FALSE,
                  tol = NULL,
                  ignore_ws = TRUE,
-                 regex = FALSE) {
+                 regex = FALSE,
+                 feedback=NULL) {
   # make sure answer is a numeric or character vector
   answer <- unlist(answer)
   if (!is.vector(answer) ||
@@ -64,11 +71,14 @@ fitb <- function(answer,
   answers <- gsub("\'", "&apos;", answers, fixed = TRUE)
 
   # html format
-  html <- paste0("<input class='webex-solveme",
+  html <- paste0("<input id='",
+        sample(1:10000000000000, size=1),
+        "' class='webex-solveme",
          ifelse(ignore_ws, " nospaces", ""),
          ifelse(!is.null(tol), paste0("' data-tol='", tol, ""), ""),
          ifelse(ignore_case, " ignorecase", ""),
          ifelse(regex, " regex", ""),
+         ifelse(!is.null(feedback), paste0("' feedback='", feedback), ""),
          "' size='", width,
          "' data-answer='", answers, "'/>")
 
@@ -104,6 +114,7 @@ fitb <- function(answer,
 #'
 #' # Which actor played Luke Skywalker in the movie Star Wars?
 #' mcq(c("Alec Guinness", answer = "Mark Hamill", "Harrison Ford"))
+#'
 #' What is 20 - 2 x 4?
 #' mcq(opts=c("72", answer = "12"),
 #'     feedback=c("Not quite - remember the order of operations. What part of the sum do you need to do first?", "Great job!"))
@@ -156,7 +167,7 @@ mcq <- function(opts, feedback=NULL) {
 #' # True or False? The month of April has 31 days.
 #' torf(FALSE)
 #' @export
-torf <- function(answer) {
+torf <- function(answer, feedback=NULL) {
   opts <- c("TRUE", "FALSE")
   if (answer)
     names(opts) <- c("answer", "")
@@ -197,7 +208,7 @@ torf <- function(answer) {
 #' longmcq(opts)
 #'
 #' @export
-longmcq <- function(opts) {
+longmcq <- function(opts, feedback=NULL) {
   ix <- which(names(opts) == "answer")
   if (length(ix) == 0) {
     stop("The question has no correct answer")
