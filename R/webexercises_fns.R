@@ -104,7 +104,7 @@ fitb <- function(answer,
 #'
 #' # Which actor played Luke Skywalker in the movie Star Wars?
 #' mcq(c("Alec Guinness", answer = "Mark Hamill", "Harrison Ford"))
-#' What is 20 - 2 x 4
+#' What is 20 - 2 x 4?
 #' mcq(opts=c("72", answer = "12"),
 #'     feedback=c("Not quite - remember the order of operations. What part of the sum do you need to do first?", "Great job!"))
 #' @export
@@ -125,8 +125,8 @@ mcq <- function(opts, feedback=NULL) {
   }
 
   # html format
-  html <- sprintf("<select class='webex-select'><option value='blank'></option>%s</select>",
-          paste(options, collapse = ""))
+  html <- sprintf("<select id='%.0f' class='webex-select'><option value='blank'></option>%s</select>",
+          sample(1:10000000000000, size=1), paste(options, collapse = ""))
 
   # pdf / other format
   pdf_opts <- sprintf("* (%s) %s  ", LETTERS[seq_along(opts)], opts)
