@@ -78,7 +78,7 @@ fitb <- function(answer,
          ifelse(!is.null(tol), paste0("' data-tol='", tol, ""), ""),
          ifelse(ignore_case, " ignorecase", ""),
          ifelse(regex, " regex", ""),
-         ifelse(!is.null(feedback), paste0("' feedback='", feedback), ""),
+         ifelse(!is.null(feedback), paste0("' feedback='<b>", feedback, "</b>"), ""),
          "' size='", width,
          "' data-answer='", answers, "'/>")
 
