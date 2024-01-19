@@ -191,6 +191,7 @@ torf <- function(answer, feedback=NULL) {
     if (length(feedback) != 2) {
       stop("Feedback vector must have a length of 2 if being provided.")
     }
+  }
 
   if (answer)
     names(opts) <- c("answer", "")
@@ -206,7 +207,7 @@ torf <- function(answer, feedback=NULL) {
            isTRUE(pandoc_to == "html"),
          mcq(opts, feedback), "TRUE / FALSE")
   }
-}
+
 
 
 #' Longer MCQs with Radio Buttons
