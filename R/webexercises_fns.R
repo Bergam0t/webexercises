@@ -36,6 +36,9 @@
 #'
 #' What is 1 + 3 x 2?
 #' fitb(7, num = TRUE, feedback="Not quite - think about the order of operations")
+#'
+#' Type in the word 'long'
+#' r fitb("long", feedback="See, this doesn't work quite as well.")
 #' @export
 fitb <- function(answer,
                  width = calculated_width,
@@ -84,7 +87,8 @@ fitb <- function(answer,
                         # to ensure apostrophes don't break formatting
                         paste0(' feedback="<b>', feedback, '</b>"'),
                         ""),
-                 " data-answer='", answers, "'/>")
+                 " data-answer='", answers,
+                 "'></input>")
 
   # pdf / other format
   pdf <- paste(rep("_", width), collapse = "")
