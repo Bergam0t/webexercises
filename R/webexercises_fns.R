@@ -72,15 +72,19 @@ fitb <- function(answer,
 
   # html format
   html <- paste0("<input id='",
-        sample(1:10000000000000, size=1),
-        "' class='webex-solveme",
-         ifelse(ignore_ws, " nospaces", ""),
-         ifelse(!is.null(tol), paste0("' data-tol='", tol, ""), ""),
-         ifelse(ignore_case, " ignorecase", ""),
-         ifelse(regex, " regex", ""),
-         ifelse(!is.null(feedback), paste0("' feedback='<b>", feedback, "</b>"), ""),
-         "' size='", width,
-         "' data-answer='", answers, "'/>")
+                 sample(1:10000000000000, size = 1),
+                 "' class='webex-solveme",
+                 ifelse(ignore_ws, " nospaces", ""),
+                 ifelse(!is.null(tol), paste0("' data-tol='", tol, ""), ""),
+                 ifelse(ignore_case, " ignorecase", ""),
+                 ifelse(regex, " regex", ""),
+                 "' size='", width, "'",
+                 ifelse(!is.null(feedback),
+                        # Note swapping of single and double quotes here
+                        # to ensure apostrophes don't break formatting
+                        paste0(' feedback="<b>', feedback, '</b>"'),
+                        ""),
+                 " data-answer='", answers, "'/>")
 
   # pdf / other format
   pdf <- paste(rep("_", width), collapse = "")
@@ -130,14 +134,17 @@ mcq <- function(opts, feedback=NULL) {
       stop("Different number of feedback options passed to number of question options. Please ensure that you have as many feedback text pieces as questions and they are in the same order as your opts vector.")
     }
 
-    options <- sprintf("<option value='%s' feedback='<b>%s</b>'>%s</option>", names(opts), feedback, opts)
+    options <- sprintf('<option value="%s" feedback="<b>%s</b>"">%s</option>',
+                       names(opts), feedback, opts)
   } else {
-    options <- sprintf("<option value='%s'>%s</option>", names(opts), opts)
+    options <- sprintf('<option value="%s">%s</option>',
+                       names(opts), opts)
   }
 
   # html format
-  html <- sprintf("<select id='%.0f' class='webex-select'><option value='blank'></option>%s</select>",
-          sample(1:10000000000000, size=1), paste(options, collapse = ""))
+  html <- sprintf('<select id="%.0f" class="webex-select"><option value="blank"></option>%s</select>',
+                  sample(1:10000000000000, size = 1),
+                  paste(options, collapse = ""))
 
   # pdf / other format
   pdf_opts <- sprintf("* (%s) %s  ", LETTERS[seq_along(opts)], opts)
