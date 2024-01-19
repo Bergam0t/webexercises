@@ -152,22 +152,24 @@ radiogroups_func = function(e) {
   var cl = checked_button.parentElement.classList;
   var labels = checked_button.parentElement.parentElement.children;
   var feedback = (checked_button.getAttribute("feedback"))
+  if (feedback !== null & feedback !== "<b></b>") { feedback = feedback + "</br></br>" }
 
-  if (document.getElementById('feedbackDiv') === null){
+  if (document.getElementById('feedbackDiv'+this.id) === null){
 
     var feedbackDiv = document.createElement("div");
-    feedbackDiv.setAttribute("id", "feedbackDiv");
+    feedbackDiv.setAttribute("id", "feedbackDiv"+this.id);
+    feedbackDiv.setAttribute("class", "feedback");
 
   } else {
 
-      var feedbackDiv = document.getElementById('feedbackDiv')
+      var feedbackDiv = document.getElementById('feedbackDiv'+this.id)
       feedbackDiv.innerHTML = "";
 
   }
 
   const currentDiv = document.getElementById(this);
   feedbackDiv.innerHTML = feedback;
-  document.body.insertBefore(feedbackDiv, currentDiv);
+  this.insertAdjacentElement('afterend', feedbackDiv);
 
   /* get rid of styles */
   for (i = 0; i < labels.length; i++) {
