@@ -363,17 +363,24 @@ unhide <- function() {
 #' @export
 style_widgets <- function(incorrect = "#983E82",
                           correct = "#59935B",
-                          highlight = "#467AAC") {
+                          highlight = "#467AAC",
+                          feedback = "#5EB3D4") {
   # default if not R colour or hex
   i_border <- incorrect
   i_bg <- incorrect
   c_border <- correct
   c_bg <- correct
   h_border <- highlight
+  f_text <- feedback
 
   if (highlight %in% grDevices::colours()) {
     hrgb <- grDevices::col2rgb(highlight, alpha = FALSE)
     h_border <- paste0("rgb(", paste(hrgb, collapse = ", "), ")")
+  }
+
+  if (feedback %in% grDevices::colours()) {
+    frgb <- grDevices::col2rgb(feedback, alpha = FALSE)
+    f_border <- paste0("rgb(", paste(frgb, collapse = ", "), ")")
   }
 
   if (incorrect %in% grDevices::colours()) {
@@ -400,6 +407,7 @@ style_widgets <- function(incorrect = "#983E82",
     "    --correct: ", c_border, ";\n",
     "    --correct_alpha: ", c_bg, ";\n",
     "    --highlight: ", h_border, ";\n",
+    "    --feedback: ", f_border, ";\n",
     "}\n",
     "  .webex-incorrect, input.webex-solveme.webex-incorrect,\n",
     "  .webex-radiogroup label.webex-incorrect {\n",
@@ -417,6 +425,10 @@ style_widgets <- function(incorrect = "#983E82",
     "  .webex-solution button, .webex-check-button {\n",
     "    background-color: var(--highlight);\n",
     "  }\n",
+    "  .feedback {\n",
+    "    color: var(--feedback);\n",
+    "  }\n",
+
     "</style>\n\n"
   )
 
