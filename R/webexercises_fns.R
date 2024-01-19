@@ -166,6 +166,9 @@ mcq <- function(opts, feedback=NULL) {
 #' Create a true-or-false question
 #'
 #' @param answer Logical value TRUE or FALSE, corresponding to the correct answer.
+#' @param feedback Optional vector of help or praise.
+#'  elements must be in the order c("feedback for true", "feedback for false")
+#'
 #' @details Writes html code that creates an option box widget with TRUE or FALSE as alternatives. Call this function inline in an RMarkdown document. See the Web Exercises RMarkdown template for further examples.
 #'
 #' @return A character string with HTML code to generate a pull-down
@@ -183,6 +186,12 @@ mcq <- function(opts, feedback=NULL) {
 #' @export
 torf <- function(answer, feedback=NULL) {
   opts <- c("TRUE", "FALSE")
+
+  if (!is.null(feedback)) {
+    if (length(feedback) != 2) {
+      stop("Feedback vector must have a length of 2 if being provided.")
+    }
+
   if (answer)
     names(opts) <- c("answer", "")
   else
@@ -203,6 +212,10 @@ torf <- function(answer, feedback=NULL) {
 #'
 #' @param opts Vector of alternatives. The correct answer is the
 #'   element(s) of this vector named 'answer'.
+#' @param feedback Optional vector of help or praise.
+#'   element(s) must be in the same order as the vector of options.
+#'   If provided, the additional text will appear when an option is selected.
+#'
 #' @details Writes html code that creates a radio button widget, with a
 #'   single correct answer. This is more suitable for longer answers. Call this function inline in an RMarkdown
 #'   document. See the Web Exercises RMarkdown template for further
