@@ -75,7 +75,7 @@ If present, the feedback vector must be the same length as the options vector an
 You can also add feedback to True or False questions.
 To do this, just pass in a vector of feedback - the first item is the feedback for the 'TRUE' option, and the second is for the 'FALSE' option.
 
-`r torf(FALSE, c("That's not quite right. Remember the rhyme - 30 days has September, *April* June and November!", "Well done! April - along with September, June and November - has 30 days. February has 28 or 29 (depending on whether it's a leap year), and the rest have 31."))`
+True or False? The month of April has 31 days. `r torf(FALSE, c("That's not quite right. Remember the rhyme - 30 days has September, *April* June and November!", "Well done! April - along with September, June and November - has 30 days. February has 28 or 29 (depending on whether it's a leap year), and the rest have 31."))`
 
 ### Longer MCQs (`longmcq()`)
 
@@ -160,6 +160,20 @@ cat("What is a p-value?", longmcq(opts))
 
 :::
 
+
+You can provide feedback within these and it won't display until the 'check answers' button is clicked.
+
+::: {.webex-check .webex-box}
+
+I am going to learn a lot: `r torf(TRUE, feedback=c("Yes! That's what we like to see.", "I look forward to proving you wrong!"))`
+
+Type in the word 'long': `r fitb("long", feedback="See, this does not work quite as well.")`
+
+```{r, results='asis'}
+cat("What is a p-value?", longmcq(opts_p, feedback_p))
+```
+
+:::
 
 
 ## Hidden solutions and hints
