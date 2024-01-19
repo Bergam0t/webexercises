@@ -134,7 +134,7 @@ mcq <- function(opts, feedback=NULL) {
       stop("Different number of feedback options passed to number of question options. Please ensure that you have as many feedback text pieces as questions and they are in the same order as your opts vector.")
     }
 
-    options <- sprintf('<option value="%s" feedback="<b>%s</b>"">%s</option>',
+    options <- sprintf('<option value="%s" feedback="<b>%s</b>">%s</option>',
                        names(opts), feedback, opts)
   } else {
     options <- sprintf('<option value="%s">%s</option>',
