@@ -205,6 +205,7 @@ torf <- function(answer, feedback=NULL) {
            isTRUE(out_fmt == "html") ||
            isTRUE(pandoc_to == "html"),
          mcq(opts, feedback), "TRUE / FALSE")
+  }
 }
 
 
@@ -235,7 +236,7 @@ torf <- function(answer, feedback=NULL) {
 #'
 #' longmcq(opts)
 #'
-#'  feedback = c("Not quite - have another go", "Correct! This is a really important definition to get comfortable with.", "Not quite - try again.")
+#' feedback = c("Not quite - have another go", "Correct! This is a really important definition to get comfortable with.", "Not quite - try again.")
 #' longmcq(opts, feedback)
 #' @export
 longmcq <- function(opts, feedback=NULL) {
