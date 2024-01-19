@@ -207,6 +207,8 @@ torf <- function(answer, feedback=NULL) {
 #'
 #' longmcq(opts)
 #'
+#'  feedback = c("Not quite - have another go", "Correct! This is a really important definition to get comfortable with.", "Not quite - try again.")
+#' longmcq(opts, feedback)
 #' @export
 longmcq <- function(opts, feedback=NULL) {
   ix <- which(names(opts) == "answer")
@@ -215,10 +217,20 @@ longmcq <- function(opts, feedback=NULL) {
   }
 
   opts2 <- gsub("\'", "&apos;", opts, fixed = TRUE)
-
   # make up a name to group them
   qname <- paste0("radio_", paste(sample(LETTERS, 10, T), collapse = ""))
-  options <- sprintf('<label><input type="radio" autocomplete="off" name="%s" value="%s"></input> <span>%s</span></label>', qname, names(opts), opts2)
+
+  if (!is.null(feedback)) {
+    if (length(opts) != length(feedback)) {
+      stop("Different number of feedback options passed to number of question options. Please ensure that you have as many feedback text pieces as questions and they are in the same order as your opts vector.")
+    }
+
+    options <- sprintf('<label><input type="radio" autocomplete="off" name="%s" value="%s" feedback="<b>%s</b>"></input> <span>%s</span></label>',
+                       qname, names(opts), feedback, opts2)
+  } else {
+    options <- sprintf('<label><input type="radio" autocomplete="off" name="%s" value="%s"></input> <span>%s</span></label>',
+                       qname, names(opts), opts2)
+  }
 
   # html format
   html <- paste0("<div class='webex-radiogroup' id='", qname, "'>",

@@ -88,6 +88,16 @@ opts_p <- c(
 
 `r longmcq(opts_p)`
 
+You can also add feedback to long multiple choice questions.
+
+```{r}
+feedback_p <- c("Not quite - have another go",
+                "Correct! This is a really important definition to get comfortable with.",
+                "Not quite - try again.")
+```
+
+`r longmcq(opts_p, feedback_p)`
+
 **What is true about a 95% confidence interval of the mean?**
 
 ```{r}
@@ -100,6 +110,30 @@ opts_ci <- sample(c(
 ```
 
 `r longmcq(opts_ci)`
+
+
+
+Not every option needs to have feedback - but you need to pass an empty string so that the feedback vector is the same length as the options vector.
+If randomising the order, you need to make sure you apply the same ordering to the opts and feedback vectors.
+
+```{r}
+# use sample() to randomise the order
+opts_ci <- c(
+  answer = "if you repeated the process many times, 95% of intervals calculated in this way contain the true mean",
+  "there is a 95% probability that the true mean lies within this range",
+  "95% of the data fall within this range"
+)
+
+feedback_ci <- c(
+  "",
+  "This is a common misconception - but it's not quite right.",
+  "Not quite - you get data falling outside of this. Think more about the true mean."
+)
+
+indices = sample(length(opts_ci))
+```
+
+`r longmcq(opts_ci[order(indices)], feedback_ci[order(indices)])`
 
 ## Checked sections
 

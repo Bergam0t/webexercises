@@ -151,6 +151,23 @@ radiogroups_func = function(e) {
   var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
   var cl = checked_button.parentElement.classList;
   var labels = checked_button.parentElement.parentElement.children;
+  var feedback = (checked_button.getAttribute("feedback"))
+
+  if (document.getElementById('feedbackDiv') === null){
+
+    var feedbackDiv = document.createElement("div");
+    feedbackDiv.setAttribute("id", "feedbackDiv");
+
+  } else {
+
+      var feedbackDiv = document.getElementById('feedbackDiv')
+      feedbackDiv.innerHTML = "";
+
+  }
+
+  const currentDiv = document.getElementById(this);
+  feedbackDiv.innerHTML = feedback;
+  document.body.insertBefore(feedbackDiv, currentDiv);
 
   /* get rid of styles */
   for (i = 0; i < labels.length; i++) {
