@@ -177,6 +177,9 @@ mcq <- function(opts, feedback=NULL) {
 #'
 #' # True or False? The month of April has 31 days.
 #' torf(FALSE)
+#'
+#' True or False? The month of April has 31 days.
+#' torf(FALSE, c("That's not quite right. Remember the rhyme - 30 days has September, *April* June and November!", "Well done! April - along with September, June and November - has 30 days. February has 28 or 29 (depending on whether it's a leap year), and the rest have 31."))
 #' @export
 torf <- function(answer, feedback=NULL) {
   opts <- c("TRUE", "FALSE")
@@ -188,10 +191,11 @@ torf <- function(answer, feedback=NULL) {
   # check type of knitting
   out_fmt <- knitr::opts_knit$get("out.format")
   pandoc_to <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+
   ifelse((is.null(out_fmt) & is.null(pandoc_to)) ||
            isTRUE(out_fmt == "html") ||
            isTRUE(pandoc_to == "html"),
-         mcq(opts), "TRUE / FALSE")
+         mcq(opts, feedback), "TRUE / FALSE")
 }
 
 
