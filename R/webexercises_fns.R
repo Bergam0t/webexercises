@@ -428,7 +428,6 @@ style_widgets <- function(incorrect = "#983E82",
     "  .feedback {\n",
     "    color: var(--feedback);\n",
     "  }\n",
-
     "</style>\n\n"
   )
 
