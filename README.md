@@ -1,6 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# Fork details
+
+This fork adds in the ability to provide an optional 'feedback' argument to all question types. 
+
+Feedback will display after the question, and will only appear when one of the options is chosen. 
+
+![image](https://github.com/Bergam0t/webexercises/assets/29951987/efebf69d-1a25-4fc9-bef1-a7b957ffb589)
+
+![image](https://github.com/Bergam0t/webexercises/assets/29951987/5b89df2a-f44e-4802-9dfb-81c067b2494f)
+
+The intention is to tidy up the approach and finish updating relevant documentation, as well as testing within rmd (currently only tested within Quarto), then submit this as a pull request to the main library. 
+
+The `webexercises` document that is automatically added to a project through the `add_to_quarto()` function has been updated to include examples of the feedback parameter for all question types.
+
 # The `{webexercises}` package
 
 <img src="man/figures/logo.png" style="float:right; max-width:280px; width: 25%;" />
