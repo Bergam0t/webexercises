@@ -15,6 +15,14 @@ The intention is to tidy up the approach and finish updating relevant documentat
 
 The `webexercises` document that is automatically added to a project through the `add_to_quarto()` function has been updated to include examples of the feedback parameter for all question types.
 
+### Installing this fork
+
+You can install this fork from GitHub with:
+
+```
+devtools::install_github("Bergam0t/webexercises")
+```
+
 # The `{webexercises}` package
 
 <img src="man/figures/logo.png" style="float:right; max-width:280px; width: 25%;" />
