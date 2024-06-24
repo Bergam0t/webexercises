@@ -7,7 +7,7 @@ This fork adds in the ability to provide an optional 'feedback' argument to all 
 
 Feedback will display after the question, and will only appear when one of the options is chosen. 
 
-![image](https://github.com/Bergam0t/webexercises/assets/29951987/efebf69d-1a25-4fc9-bef1-a7b957ffb589)
+![image](https://github.com/Bergam0t/webexercises/assets/29951987/0217d9f0-7f33-4958-8dac-bb37a4da8d78)
 
 ![image](https://github.com/Bergam0t/webexercises/assets/29951987/5b89df2a-f44e-4802-9dfb-81c067b2494f)
 
@@ -15,11 +15,21 @@ The intention is to tidy up the approach and finish updating relevant documentat
 
 The `webexercises` document that is automatically added to a project through the `add_to_quarto()` function has been updated to include examples of the feedback parameter for all question types.
 
+### Examples
+
+``` r
+- What has changed in the year 3000? `r mcq(opts=c(answer = "Not much, but they live underwater", "Everything", "Nothing - I can't believe they don't have hoverboards yet"), feedback=c("", "Go and listen to the definitive song on the subject and report back!", "Wait, really? They don't? Well, that's thoroughly disappointing."))`
+```
+
+``` r
+True or False? The month of April has 31 days. `r torf(FALSE, c("That's not quite right. Remember the rhyme - 30 days has September, *April* June and November!", "Well done! April - along with September, June and November - has 30 days. February has 28 or 29 (depending on whether it's a leap year), and the rest have 31."))`
+```
+
 ### Installing this fork
 
 You can install this fork from GitHub with:
 
-```
+``` r
 devtools::install_github("Bergam0t/webexercises")
 ```
 
